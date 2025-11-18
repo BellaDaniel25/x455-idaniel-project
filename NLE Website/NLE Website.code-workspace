@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "NLE Website"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Test Website"
+	}
+}

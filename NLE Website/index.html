@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>New Leaf Extracts</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- added -->
+  <script
+    type="text/JavaScript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+  ></script>
+  <script
+    type="text/JavaScript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"
+  ></script>
+
+<style>
+  /* Navbar */
+  .w3-top { background-color: #bcc84a !important; }
+  .w3-bar .fa { color: #fff !important; }
+  .w3-bar { border: none; }
+  .w3-top .w3-bar .w3-bar-item,
+  .w3-top .w3-bar .w3-button { color: #fff !important; }
+body { 
+  padding-top: 120px; 
+  margin: 0; 
+}
+
+/* Smooth scroll */
+html {
+  scroll-padding-top: 120px; 
+  scroll-behavior: smooth;
+}
+
+  /* Navbar - keep tight height */
+.w3-top .w3-bar { 
+  padding: 8px 16px !important;
+}
+
+/* Logo link */
+.w3-top .w3-bar a[href="#home"] {
+  padding: 4px 8px !important;
+  float: left;
+}
+
+/* Logo image */
+.w3-top .w3-bar a[href="#home"] img {
+  height: 100px;
+  width: 100px;
+  display: block;
+}
+
+/* Right nav items alignment */
+.header-icons {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+  .header-icons .fa { font-size: 18px; color: #fff; }
+  .w3-top .w3-bar .w3-bar-item.w3-button b { color: #fff; }
+
+  /* Sections layout */
+  .about-section,
+  .featured-section { padding: 48px 16px; max-width: 1100px; margin: 0 auto; }
+
+  /* Headings */
+  .section-heading,
+  .subheading {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+    margin: 0 0 16px 0;
+    font-weight: 600;
+    color: #111;
+  }
+  .featured-heading {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+    margin: 0 0 24px 0;
+    font-weight: 400;
+    color: #111;
+  }
+  .featured-sub { margin: 0 0 20px 0; color: #333; font-size: 1rem; }
+
+  /* About card */
+  .about-card {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    background: #bcc84a;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  .about-card .about-text { flex: 1 1 auto; }
+  .about-card h4 { margin: 0 0 10px 0; font-size: 1.25rem; font-weight: 700; color: #fff; }
+  .about-card p { margin: 0 0 12px 0; color: rgba(255,255,255,0.95); line-height: 1.5; }
+  .learn-btn {
+    display: inline-block;
+    background: #4b3b2a;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .about-image { flex: 0 0 220px; max-width: 220px; }
+  .about-image img { width: 100%; height: auto; border-radius: 4px; display: block; 
+  }
+    #Guide .about-card {
+    background: transparent !important;
+    box-shadow: none;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+    #myTable thead tr,
+  #myTable thead th {
+    background: #bcc84a !important;
+    color: #fff !important;
+  }
+    #Guide #myTable { margin: 24px 0; }
+  #Guide #myTable tbody td { padding: 26px 18px; }
+
+  /* Full-bleed images */
+  .img-bleed {
+    display: block;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
+  .about-image img,
+  .product-img img { object-fit: contain; height: auto; max-height: none; }
+
+  /* Products */
+  .product-list { display: flex; flex-direction: column; gap: 22px; }
+  .product {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background: #bcc84a;
+    color: #fff;
+    padding: 22px;
+    border-radius: 8px;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.03);
+  }
+  .product-img { flex: 0 0 120px; }
+  .product-img img { width: 120px; height: 120px; object-fit: cover; border-radius: 6px; display: block; }
+  .product-content { flex: 1 1 auto; }
+  .product-title { margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 700; color: #fff; }
+  .product-desc { margin: 0 0 12px 0; color: rgba(255,255,255,0.95); line-height: 1.5; }
+  .product-actions { display: flex; gap: 12px; align-items: center; }
+  .product-btn {
+    display: inline-block;
+    background: #4b3b2a;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.12);
+  }
+
+  /* Scrollable columns */
+  #Herbs .my-scrolling {
+    background: transparent; 
+    color: #fff;
+    height: 300px;          
+    overflow: auto;
+    padding-right: 10px;
+  }
+  #Herbs .my-scrolling p {
+    color: #fff;
+    line-height: 1.6;
+  }
+   /* Herb Spotlight */
+  #Herbs .w3-col.s4 {
+    background: #bcc84a !important;
+    color: #fff !important;
+    border-radius: 0; 
+  }
+
+  /* Heading in each column */
+  #Herbs .w3-col.s4 .w3-center h2 {
+    color: #fff !important;
+    font-weight: 700;
+    margin: 0 0 16px;
+  }
+   #Herbs .w3-row { position: relative; }
+  #Herbs .w3-row::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin-top: 18px;
+  }
+/* Sortable Table styling */
+#myTable {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+  background: transparent;
+}
+/* Header */
+#myTable thead tr {
+  background: #bcc84a; 
+}
+#myTable thead th {
+  color: #fff;
+  font-weight: 700;
+  padding: 20px 18px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 1.05rem;
+}
+
+/* Body rows: horizontal separators only */
+#myTable tbody tr {
+  border-top: 1px solid rgba(0,0,0,0.12);
+}
+#myTable tbody td {
+  padding: 26px 18px;
+  vertical-align: middle;
+  border: none; 
+  word-wrap: break-word;
+  line-height: 1.6;
+  color: #111;
+}
+
+/*first column (Product Name)  */
+#myTable tbody td:first-child {
+  font-weight: 700;
+  text-align: left;
+  width: 24%;
+  white-space: normal;
+  color: #111;
+}
+/* Full accordion styles */
+button[id^="accordionBtn"] {
+  background: #bcc84a !important; /* site green */
+  color: #fff !important;
+  border: none !important;
+  padding: 12px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+button[id^="accordionBtn"] h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+}
+button[id^="accordionBtn"] i {
+  transition: transform .25s ease;
+  display: inline-block;
+  line-height: 1;
+}
+
+/* open state (script swaps classes to w3-orange) */
+button[id^="accordionBtn"].w3-orange,
+button[id^="accordionBtn"].active {
+  background: #9fae3b !important; /* darker green when open */
+  color: #fff !important;
+}
+
+/* rotate caret when open */
+button[id^="accordionBtn"].w3-orange i,
+button[id^="accordionBtn"].active i {
+  transform: rotate(180deg);
+}
+
+/* ensure the W3 show class actually displays the panel (overrides w3-hide) */
+.w3-show {
+  display: block !important;
+}
+
+/* focus / keyboard accessibility */
+button[id^="accordionBtn"]:focus {
+  outline: 3px solid rgba(155,203,67,0.25);
+  outline-offset: 2px;
+}
+
+/* small-screen spacing */
+@media (max-width: 700px) {
+  button[id^="accordionBtn"] { padding: 10px; border-radius: 6px; }
+  #accordion1, #accordion2 { padding: 14px; }
+}
+.w3-hide { display: none; }
+
+  #site-footer {
+    background: #bcc84a;
+    color: #fff;
+  }
+  #site-footer p { margin: 0; color: #fff; font-weight: 600; }
+  #site-footer a { color: #fff; text-decoration: none; }
+
+  /* carousel slides */
+  .slide-container { max-width: 1100px; margin: 0 auto; }
+  .slide-container .mySlides { width: 100%; height: auto; display: none; object-fit: cover; }
+  .slide-container .mySlides:first-child { display: block; } 
+  @media (max-width: 700px) {
+    .slide-container { padding: 0 12px; }
+  }
+  /* Responsive adjustments */
+  @media (max-width: 700px) {
+    .about-card { flex-direction: column; }
+    .about-image { max-width: 100%; width: 100%; }
+    .product { flex-direction: column; align-items: stretch; }
+    .product-img { width: 100%; flex: 0 0 auto; }
+    .product-img img { width: 100%; height: 220px; margin: 0 auto; }
+  }
+  @media (max-width: 800px) {
+  #myTable thead th, #myTable tbody td { padding: 14px 10px; font-size: 0.95rem; }
+  #myTable tbody td:first-child { width: 35%; }
+}
+  /* gutters + responsive spacing for Learn videos */
+.learn-row .w3-col.m6 { padding: 0 12px; box-sizing: border-box; }
+.video-wrap { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; background:#000; }
+.video-wrap iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; display:block; }
+@media (max-width:600px){ .learn-row .w3-col { padding: 0; } .video-wrap{ padding-bottom:56.25%; } }
+</style>
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-padding w3-card" style="letter-spacing:4px;">
+    
+    <!-- Logo (far left) -->
+  <a href="#home" class="w3-bar-item w3-button">
+  <img src="images/Updated-logo.png" alt="New Leaf Extracts" style="height:100px;width:auto;display:block;margin:-20px 0;">
+</a>
+
+    <!-- Desktop navbar links (far right) -->
+    <div class="w3-right w3-hide-small">
+      <a href="#about" class="w3-bar-item w3-button">About</a>
+      <a href="#Herbs" class="w3-bar-item w3-button">Herbs</a>
+      <a href="#Guide" class="w3-bar-item w3-button">Guide</a>
+      <a href="#Learn" class="w3-bar-item w3-button">Learn</a>
+      <a href="#Gallery" class="w3-bar-item w3-button">Gallery</a>
+      <a class="w3-bar-item w3-padding-large" style="cursor:default;">
+        <i class="fa fa-search"></i>
+      </a>
+      <a class="w3-bar-item w3-padding-large" style="cursor:default;">
+        <i class="fa fa-shopping-basket"></i>
+      </a>
+    </div>
+
+    <!-- Mobile: hamburger menu icon (far right) -->
+    <a
+      href="javascript:void(0)"
+      class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+      onclick="w3_open()"
+    >
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Mobile sidebar -->
+<nav
+  class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-hide-medium w3-hide-large"
+  style="display:none;z-index:999;background:#bcc84a;"
+  id="mySidebar"
+>
+  <a
+    href="javascript:void(0)"
+    onclick="w3_close()"
+    class="w3-bar-item w3-button w3-large w3-padding-16"
+    style="color:#fff;"
+  >Close &times;</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button" style="color:#fff;">About</a>
+  <a href="#Herbs" onclick="w3_close()" class="w3-bar-item w3-button" style="color:#fff;">Herbs</a>
+  <a href="#Guide" onclick="w3_close()" class="w3-bar-item w3-button" style="color:#fff;">Guide</a>
+  <a href="#Learn" onclick="w3_close()" class="w3-bar-item w3-button" style="color:#fff;">Learn</a>
+  <a href="#Gallery" onclick="w3_close()" class="w3-bar-item w3-button" style="color:#fff;">Gallery</a>
+</nav>
+
+<!-- Header -->
+<div class="w3-content" style="max-width:1564px;">
+  
+  <!-- Title above the image -->
+<div id="home" style="padding: 20px 16px;" aria-label="Home">
+    <h1 style="font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 4vw + 1rem, 3.5rem); margin: 0;">
+      New Leaf Extracts
+    </h1>
+  </div>
+
+  <!-- Homescreen image (full width) -->
+  <img src="images/Leaves-canopy.jpg" style="width: 100%; display: block;" alt="Leaves-canopy">
+
+  <!-- Featured Products Section-->
+
+<section id="featured" class="featured-section" aria-labelledby="featured-heading">
+  <h4 id="featured-heading" class="section-heading">Featured Products</h4>
+  <p class="featured-sub">Balms &amp; Oils</p>
+
+  <div class="product-list">
+    <article class="product" aria-labelledby="p1-title">
+      <div class="product-img">
+        <img src="images/Boo-boo-balm.png" alt="Boo-Boo Balm">
+      </div>
+      <div class="product-content">
+        <h3 id="p1-title" class="product-title">Boo-Boo Balm</h3>
+        <p class="product-desc">
+          Boo-Boo Balm is a soothing, all‑natural salve crafted with calendula, beeswax, and nourishing herbs. Use it on cuts, bruises, dry skin, or even as a lip balm—perfect for everyday care that protects and hydrates.
+        </p>
+        <div class="product-actions">
+          <a class="product-btn" href="#boo-boo">Learn More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="product" aria-labelledby="p2-title">
+      <div class="product-img">
+        <img src="images/Relief-body-oil.png" alt="Relief Body Oil">
+      </div>
+      <div class="product-content">
+        <h3 id="p2-title" class="product-title">Relief Body Oil</h3>
+        <p class="product-desc">
+          Experience soothing relief with our Body Relief Oil, crafted to ease tension and nourish your skin. Infused with natural botanicals and essential oils, it melts into the skin for a calming, lightweight touch.
+        </p>
+        <div class="product-actions">
+          <a class="product-btn" href="#relief-oil">Learn More</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+  <!-- About Us Section -->
+   <div class="w3-container w3-padding-32 about-section" id="about">
+    <h2 class="featured-heading"> About Us</h2>
+    <img src="images/Aboutimage.png" class="img-bleed" alt="About Us">
+    <h3 class="section-heading">Our Story</h3>
+    <div class="about-card w3-margin-top">
+      <div class="about-text">
+        <h4>Bay-Area Herbal Therapeutics</h4>
+        <p>
+          New Leaf Extracts is a Bay Area herbal therapeutics company specializing in all-natural
+          healing products. We use organic herbs and other natural elements from local and
+          sustainable sources to create our remedies and artfully present them in recyclable
+          bottles and packaging. 
+        </p>
+       <a href="https://medlineplus.gov/herbalmedicine.html" class="learn-btn" target="_blank" rel="noopener noreferrer">Learn More</a>
+      </div>
+      <div class="about-image">
+        <img src="images/OurStoryimage.png" alt="Our Story">
+      </div>
+    </div>
+  </div>
+    <!-- Meet the Founder Section -->
+<div class="w3-container w3-padding-32 about-section" id="founder">
+  <h3 class="section-heading">Meet the Founder</h3>
+  <div class="about-card w3-margin-top">
+   <div class="about-text">
+        <h4>Amy Daniel</h4>
+        <p style="font-size: 0.9rem; margin: -8px 0 12px 0; color: rgba(255,255,255,0.85); font-style: italic;">
+          Local Bay-Area Herbalist
+        </p>
+        <p>
+          New Leaf Extracts is a family owned business created by local Bay Area herbalist, Amy Daniel. Amy started New Leaf with the desire to share her knowledge of the powerful healing benefits of plants. "After the births of my two daughters, I became determined to seek out safe, natural remedies to help them when they were sick or hurt. Frustrated by over-the-counter solutions, I began to study herbalism so that I could make my own remedies that were chemical and preservative free." The result was products that were simple, safe and effective, and based entirely on the rich medicinal properties found in plants and flowers. Our herbs come from fresh, local and sustainable sources. We only use the highest quality oils, and ethically harvested salts and clays. Because all of our products are created by hand, we guarantee the integrity of each and every batch.
+        </p>
+         <a href="https://www.linkedin.com/pulse/vote-new-leaf-extracts-receive-grant-from-whole-foods-amy/" class="learn-btn" target="_blank" rel="noopener noreferrer">Learn More</a>
+      </div>
+
+    <div class="about-image">
+      <img src="images/Founder.png" alt="Amy Daniel, Founder">
+    </div>
+  </div>
+</div>
+
+  <!-- Herb Spotlight Section -->
+<div class="w3-container w3-padding-32 about-section" id="Herbs">
+   <h2 class="featured-heading"> Herbal Spotlight</h2>
+    <img src="images/New-Products-Counter.png" class="img-bleed" alt="New-Products-Counter">
+  <h4 class="section-heading">Locally Sourced Herbs</h4>
+  <p class="featured-sub">Found In Our Products</p>
+
+  <div class="slide-container" aria-label="Herb carousel" style="margin: 24px 0;">
+    <img class="mySlides" src="images/calendula.jpg" alt="Calendula">
+    <img class="mySlides" src="images/Eucalyptus.png" alt="Eucalyptus" style="display:none">
+    <img class="mySlides" src="images/St.John'swort.jpg" alt="St. John's Wort" style="display:none">
+  </div>
+
+  <div class="w3-row" style="margin-top:24px;">
+    <div class="w3-col s4 w3-padding w3-sand">
+      <div class="w3-center" style="margin-left:-16px; margin-right:-16px; margin-top:-18px;">
+        <h4>Calendula</h4>
+      </div>
+      <div class="my-scrolling" style="padding-right:10px;">
+        <p>
+          Known for its bright golden petals, calendula is a gentle, skin-loving herb that soothes and nourishes. Though native to the Mediterranean, it thrives in California’s sunny climate and is commonly grown by small farms across the Bay Area. Our calendula is locally sourced and carefully infused into oils and balms to support skin healing, hydration, and natural radiance. Calendula has long been celebrated in traditional herbalism for its ability to calm irritation and support the skin’s natural repair process. Its petals contain powerful compounds—like flavonoids and carotenoids—that help reduce redness, protect against environmental stressors, and promote a healthy, even glow. Gentle enough for all skin types, it’s often recommended for sensitive or reactive skin in need of extra care. Beyond its therapeutic qualities, calendula carries a symbolic warmth that mirrors its sunny appearance. Many growers consider it a “happy” plant, known to brighten gardens and attract pollinators throughout the growing season. When harvested and dried, its vibrant petals maintain their color and potency, infusing oils with a soft, golden hue. This natural vitality is what makes calendula such a cherished ingredient in handcrafted, small-batch skincare.
+        </p>
+      </div>
+    </div>
+
+    <div class="w3-col s4 w3-padding w3-sand">
+      <div class="w3-center" style="margin-left:-16px; margin-right:-16px; margin-top:-18px;">
+        <h4>Eucalyptus</h4>
+      </div>
+      <div class="my-scrolling" style="padding-right:10px;">
+        <p>
+          Native to Australia but naturalized throughout California, eucalyptus has become a beloved part of the local landscape—especially in the East Bay hills. Its invigorating aroma clears the senses and helps open the breath, making it a staple in herbal wellness and body care. Eucalyptus is also known for its natural antimicrobial and antiseptic properties. For generations, it has been used in salves, teas, and steam inhalations to help soothe congestion, ease coughs, and support the immune system. Even a few leaves in a warm shower can create a spa-like, clarifying experience that relaxes the body while refreshing the mind. In addition to its wellness benefits, eucalyptus carries a unique cultural and ecological story in California. First planted widely during the late 1800s, the trees quickly adapted to the coastal climate and became an iconic silhouette against the foggy hillsides. Their tall, elegant trunks and rustling leaves add texture and sound to local trails, making them a familiar companion to hikers, artists, and nature lovers throughout the region.
+        </p>
+      </div>
+    </div>
+
+    <div class="w3-col s4 w3-padding w3-sand">
+      <div class="w3-center" style="margin-left:-16px; margin-right:-16px; margin-top:-18px;">
+        <h4>St. John's Wort</h4>
+      </div>
+      <div class="my-scrolling" style="padding-right:10px;">
+        <p>
+          Wildcrafted and cultivated across Northern California’s coastal hills, St. John’s wort is a sun-loving herb known for its uplifting and restorative nature. Its bright yellow flowers are traditionally harvested at midsummer and infused in oil to create a rich, warming extract. St. John’s wort has a long history of use in herbal wellness, especially for soothing tense or overworked muscles. When infused into oil, it develops a deep red color—an indication of the plant’s active compounds, like hypericin—which are known for their calming, anti-inflammatory qualities. This makes it a favorite for massage blends, post-workout care, and topical formulas meant to comfort the body and ease everyday discomfort. In California, the plant thrives along sunny slopes and open meadows, where its golden blossoms reflect the height of summer. Local herbalists value St. John’s wort not only for its therapeutic properties, but also for the care and timing involved in its harvest. When picked at peak bloom and slowly infused, the result is an oil that feels grounding, warming, and supportive—a true expression of California’s coastal energy and natural abundance.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- Product Guide -->
+  <div class="w3-container w3-padding-32 about-section" id="Guide">
+  <h2 class="featured-heading">Product Guide</h2>
+  <img src="images/bath-salts.jpg" class="img-bleed" alt="Bath salts">
+  <h3 class="section-heading">Description &amp; Benefits</h3>
+
+  <div class="about-card w3-margin-top">
+    <div class="about-text">
+
+      <table id="myTable" class="w3-table-all w3-hoverable" style="margin-top:12px;">
+        <thead>
+          <tr class="w3-brown">
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Key Ingredients</th>
+            <th>Benefits</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="w3-hover-sand">
+            <td>Boo-boo Balm</td>
+            <td>A classic healing salve for all types of skin conditions, cuts, and rashes. Completely natural, made with organic herbs, grapeseed oil, and beeswax.</td>
+            <td>Calendula, Grapeseed Oil, Beeswax</td>
+            <td>Heals minor cuts, scrapes, and rashes. Soothes irritation and nourishes skin tissue.</td>
+          </tr>
+          <tr class="w3-hover-sand">
+            <td>Body-Relief Oil</td>
+            <td>A restorative body oil that relieves pain, stiffness, and tension. Excellent for massage and relaxation.</td>
+            <td>St. John’s Wort, Eucalyptus, Grapeseed Oil</td>
+            <td>Eases sore muscles and nerve pain, relaxes the nervous system, and promotes overall body relief.</td>
+          </tr>
+          <tr class="w3-hover-sand">
+            <td>Floral Trio Body Oil</td>
+            <td>A fragrant, mood-lifting herb-infused oil that calms the mind and uplifts the spirit.</td>
+            <td>Lavender, Rose, Geranium, Grapeseed Oil</td>
+            <td>Reduces stress and anxiety, elevates mood, relieves headaches, and supports emotional balance.</td>
+          </tr>
+          <tr class="w3-hover-sand">
+            <td>Revive Bath Formula</td>
+            <td>A rejuvenating blend of mineral salts, flowers, and essential oils designed to restore balance and vitality.</td>
+            <td>Mineral Salts, Dried Flowers, Essential Oils</td>
+            <td>Detoxifies the body, relaxes muscles, softens skin, and revitalizes the senses.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> 
+  </div> 
+</div> 
+
+ <!-- Learn Section -->
+  <div class="w3-container w3-padding-32 about-section" id="Learn">
+  <h2 class="featured-heading">Herbal Knowledge</h2>
+  <img src="images/herbalknowledge.jpg" class="img-bleed" alt="Herbal Knowledge">
+  <h4 class="section-heading">Resources</h4>
+  <p class="featured-sub">Learn About the Herbs we use</p>
+
+  <div class="w3-row learn-row">
+    <div class="w3-col m6 s12 w3-center">
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/Bh7HUetelMc?si=efNOGttjcQIG1IIv"
+          title="Healing Herbs"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="w3-col m6 s12 w3-center">
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/4s2Vl8kkKDY?si=6FxmoE7Wz6aB_JcW"
+          title="Ancient Remedies"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="w3-col m6 s12 w3-center" style="margin-top:18px;">
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/tQTIBw6_Ork?si=SSj4S6UZ_F7BHP9z"
+          title="Benefits of Essential Oils"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="w3-col m6 s12 w3-center" style="margin-top:18px;">
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/ZZifJdINW2o?si=fnjrTqEPLZROMOHt"
+          title="Most Common Herbs"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </div> 
+
+  <div class="w3-row learn-row" style="margin-top:20px;">
+    <div class="w3-col m6 s12" style="padding-right:6px;">
+      <button
+        onclick="myAccordion('accordion1')"
+        class="w3-button w3-block w3-brown"
+        id="accordionBtn1"
+        aria-expanded="false"
+        aria-controls="accordion1"
+      >
+        <h4 style="margin:0;">Essential Oils <i class="fa fa-caret-down" aria-hidden="true"></i></h4>
+      </button>
+
+      <div id="accordion1" class="w3-container w3-hide" style="height:auto;">
+        <p>
+          Derived from aromatic plants, essential oils capture the pure essence and healing properties of herbs and flowers. They are often used in skincare, massage, and aromatherapy to support emotional balance, relaxation, and overall well‑being.
+        </p>
+      </div>
+    </div>
+
+    <div class="w3-col m6 s12" style="padding-left:6px;">
+      <button
+        onclick="myAccordion('accordion2')"
+        class="w3-button w3-block w3-brown"
+        id="accordionBtn2"
+        aria-expanded="false"
+        aria-controls="accordion2"
+      >
+        <h4 style="margin:0;">Ancient Herbal Remedies <i class="fa fa-caret-down" aria-hidden="true"></i></h4>
+      </button>
+
+      <div id="accordion2" class="w3-container w3-hide" style="height:auto;">
+        <p>
+          Ancient herbal remedies have been trusted for centuries to restore balance and vitality. Rooted in traditional wisdom, these practices harness plants, oils, and minerals for gentle, long‑lasting support.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- Gallery Section -->
+<div class="w3-container w3-padding-32 about-section" id="Gallery">
+  <h2 class="featured-heading">Gallery</h2>
+  <img src="images/Galleryheroimg.jpg" class="img-bleed" alt="Gallery">
+  <h4 class="section-heading">Our Products</h4>
+  <p class="featured-sub">Take a Closer Look</p>
+
+  <!-- First row: 3 thumbnails -->
+  <div class="w3-row-padding" style="margin: 15px 0;">
+    <div class="w3-col s4">
+      <img
+        src="images/dream-sleep-formula.jpg"
+        alt="Dream Sleep Formula"
+        style="width:100%;cursor:zoom-in"
+        onclick="document.getElementById('modal01').style.display='block'"
+        class="w3-hover-shadow"
+      />
+    </div>
+
+    <div class="w3-col s4">
+      <img
+        src="images/ReviveBathFormula.jpg"
+        alt="Revive Bath Formula"
+        style="width:100%;cursor:zoom-in"
+        onclick="document.getElementById('modal02').style.display='block'"
+        class="w3-hover-shadow"
+      />
+    </div>
+
+    <div class="w3-col s4">
+      <img
+        src="images/bathsalt-1.jpg"
+        alt="Bath Salts"
+        style="width:100%;cursor:zoom-in"
+        onclick="document.getElementById('modal03').style.display='block'"
+        class="w3-hover-shadow"
+      />
+    </div>
+  </div>
+
+  <!-- Second row: 3 thumbnails -->
+  <div class="w3-row-padding" style="margin: 15px 0;">
+    <div class="w3-col s4">
+      <img
+        src="images/FINAL-booboobalm.png"
+        alt="FINAL-Boo-boo Balm"
+        style="width:100%;cursor:zoom-in"
+        onclick="document.getElementById('modal04').style.display='block'"
+        class="w3-hover-shadow"
+      />
+    </div>
+
+    <div class="w3-col s4">
+      <img
+        src="images/Relief-body-oil.png"
+        alt="Relief Body Oil"
+        style="width:100%;cursor:zoom-in"
+        onclick="document.getElementById('modal05').style.display='block'"
+        class="w3-hover-shadow"
+      />
+    </div>
+
+    <div class="w3-col s4">
+      <img
+        src="images/FINAL-floral-trio.png"
+        alt="FINAL-Floral-trio"
+        style="width:100%;cursor:zoom-in"
+        onclick="document.getElementById('modal06').style.display='block'"
+        class="w3-hover-shadow"
+      />
+    </div>
+  </div>
+
+  <!-- Modals: one per thumbnail -->
+  <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+    <span class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright" style="cursor:pointer">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom">
+      <h4 class="w3-center">Dream Sleep Formula</h4>
+      <img src="images/dream-sleep-formula.jpg" alt="Dream Sleep Formula (large)" style="width:100%" />
+    </div>
+  </div>
+
+  <div id="modal02" class="w3-modal" onclick="this.style.display='none'">
+    <span class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright" style="cursor:pointer">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom">
+      <h4 class="w3-center">Revive Bath Formula</h4>
+      <img src="images/ReviveBathFormula.jpg" alt="Revive Bath Formula (large)" style="width:100%" />
+    </div>
+  </div>
+
+  <div id="modal03" class="w3-modal" onclick="this.style.display='none'">
+    <span class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright" style="cursor:pointer">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom">
+      <h4 class="w3-center">Bath Salts</h4>
+      <img src="images/bathsalt-1.jpg" alt="Bath Salts (large)" style="width:100%" />
+    </div>
+  </div>
+
+  <div id="modal04" class="w3-modal" onclick="this.style.display='none'">
+    <span class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright" style="cursor:pointer">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom">
+      <h4 class="w3-center">Boo-boo Balm</h4>
+      <img src="images/FINAL-booboobalm.png" alt="FINAL-booboobalm (large)" style="width:100%" />
+    </div>
+  </div>
+
+  <div id="modal05" class="w3-modal" onclick="this.style.display='none'">
+    <span class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright" style="cursor:pointer">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom">
+      <h4 class="w3-center">Relief Body Oil</h4>
+      <img src="images/Relief-body-oil.png" alt="Relief Body Oil (large)" style="width:100%" />
+    </div>
+  </div>
+
+  <div id="modal06" class="w3-modal" onclick="this.style.display='none'">
+    <span class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright" style="cursor:pointer">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom">
+      <h4 class="w3-center">Floral Trio Body Oil</h4>
+      <img src="images/FINAL-floral-trio.png" alt="FINAL-Floral-trio (large)" style="width:100%" />
+    </div>
+  </div>
+
+</div> 
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer id="site-footer" class="w3-center w3-padding-32">
+  <!-- Social icons -->
+  <div class="w3-xlarge w3-section" style="margin-bottom:16px;">
+    <a class="fa fa-twitter w3-hover-opacity" href="https://twitter.com/" target="_blank" style="color:#fff; margin:0 8px;" aria-label="Twitter"></a>
+    <a class="fa fa-instagram w3-hover-opacity" href="https://www.instagram.com/" target="_blank" style="color:#fff; margin:0 8px;" aria-label="Instagram"></a>
+    <a class="fa fa-youtube-play w3-hover-opacity" href="https://www.youtube.com/" target="_blank" style="color:#fff; margin:0 8px;" aria-label="YouTube"></a>
+    <a class="fa fa-linkedin w3-hover-opacity" href="https://www.linkedin.com/" target="_blank" style="color:#fff; margin:0 8px;" aria-label="LinkedIn"></a>
+  </div>
+
+  <!-- Policy links -->
+  <div style="margin-bottom:16px;">
+    <a href="#privacy" class="w3-hover-opacity" style="color:#fff; padding-right:20px; text-decoration:none;">Privacy Policy</a>
+    <a href="#terms" class="w3-hover-opacity" style="color:#fff; padding-right:20px; text-decoration:none;">Terms of Use</a>
+    <a href="#accessibility" class="w3-hover-opacity" style="color:#fff; text-decoration:none;">Accessibility</a>
+  </div>
+
+  <!-- Phone numbers -->
+  <div style="margin-bottom:16px;">
+    <a href="tel:1-800-123-4567" class="w3-hover-opacity" style="color:#fff; padding-right:20px; text-decoration:none;">1-800-123-4567</a>
+    <a href="tel:1-800-987-6543" class="w3-hover-opacity" style="color:#fff; text-decoration:none;">TTY: 1-800-987-6543</a>
+  </div>
+
+  <!-- Copyright -->
+  <p style="margin:0; color:#fff; font-weight:350;">© 2025 New Leaf Extracts. All Rights Reserved</p>
+</footer>
+<script>
+  // Mobile sidebar toggle
+  var mySidebar = document.getElementById("mySidebar");
+
+  function w3_open() {
+    if (mySidebar.style.display === "block") {
+      mySidebar.style.display = "none";
+    } else {
+      mySidebar.style.display = "block";
+    }
+  }
+
+  function w3_close() {
+    mySidebar.style.display = "none";
+  }
+  // Carousel 
+  var slideIndex = 0;
+  carousel();
+
+  function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {slideIndex = 1}
+    if (x.length > 0) x[slideIndex-1].style.display = "block";
+    setTimeout(carousel, 4000);
+  }
+
+  // Initialize tablesorter
+  (function(){
+    if (window.jQuery && $.fn.tablesorter) {
+      $(function(){
+        $("#myTable").tablesorter({ 
+          headers: { 0: { sorter: false } }, 
+          sortList: [[1,0]] 
+        });
+      });
+    } else { 
+      console.warn("jQuery or tablesorter not loaded."); 
+    }
+  })();
+
+  // Accordion
+  function myAccordion(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+      x.previousElementSibling.className =
+        x.previousElementSibling.className.replace("w3-brown", "w3-orange");
+    } else {
+      x.className = x.className.replace(" w3-show", "");
+      x.previousElementSibling.className =
+        x.previousElementSibling.className.replace("w3-orange", "w3-brown");
+    }
+  }
+</script>
+</body>
+</html>
